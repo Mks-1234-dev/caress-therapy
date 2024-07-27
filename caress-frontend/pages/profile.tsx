@@ -130,7 +130,30 @@ export default function ProfileView() {
   }, [user]);
   
   
+  const handleLogout = async () => {
+	try {
+	  await firebase.auth().signOut();
+	  router.push('/login');
+	} catch (error) {
+	  console.error(error);
+	}
+  };
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  const Caress_results = () => {
+	router.replace('/mental-health-reports');
+  }
+
+  const therapist = () => {
+	if (isTherapist) {
+		router.replace('/therapist');
+	} else {
+		router.replace('/therapist-profile');
+	}
+  }
 
 
 
