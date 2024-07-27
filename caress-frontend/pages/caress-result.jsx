@@ -52,4 +52,25 @@ export default function Caress_result() {
 .orderBy('date', 'desc')
 .limit(1);
 
-  })
+latestResultRef.get().then((snapshot) => {
+if (!snapshot.empty) {
+  const latestResult = snapshot.docs[0].data();
+  const latestResultDate = new Date(latestResult.date);
+  const daysDiff = Math.floor((now.getTime() - latestResultDate.getTime()) / (1000 * 3600 * 24));
+
+  if (daysDiff > 7) {
+	firebase.firestore().collection('users').doc(user.uid).collection('caress-results').doc(now.toDateString()).set(quizResult);
+  }
+} else {
+  firebase.firestore().collection('users').doc(user.uid).collection('caress-results').doc(now.toDateString()).set(quizResult);
+}
+}).catch((error) => {
+console.log('Error getting latest quiz result:', error);
+});
+  }, [user])
+
+	return (
+		
+
+	)
+}
