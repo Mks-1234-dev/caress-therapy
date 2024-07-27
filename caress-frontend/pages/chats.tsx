@@ -84,6 +84,38 @@ querySnapshot.forEach(doc => {
   
 
 	return (
+		<>
+		<Head>
+			<title>
+				Chats
+			</title>
+		</Head>
+		<div className={styles.header}>
+			<div className={styles.top}>
+				<LucideArrowLeft onClick={goBack} className={styles.arrow}/>
+				<p>Chats</p>
+			</div>
+		</div>
+		<div className={styles.search}>
+			<div className={styles.searchInput}>
+			<LucideSearch/>
+			</div>
+		</div>
+		 <div className={styles.chatContainer}>
+        <div className={styles.chatList}>
+          <div className={styles.chat} onClick={onClickFunction}>
+            <div className={styles.chatAvatar}>
+				<LucideUser></LucideUser>
+			</div>
+            <div className={styles.chatInfo}>
+              <div className={styles.chatName}>ChatBot</div>
+              <div className={styles.chatPreview}>
+                Hey, I am an AI therapist
+              </div>
+            </div>
+            <div className={styles.chatTime}></div>
+          </div>
+		  </>
 		
 	)
 }
